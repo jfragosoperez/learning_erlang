@@ -1,0 +1,1 @@
+Learning Erlang (functional programming language). Some of the examples, will be practices taken from the samples in the book "Programming Erlang" by Joe Armstrong --> https://pragprog.com/book/jaerlang2/programming-erlang
