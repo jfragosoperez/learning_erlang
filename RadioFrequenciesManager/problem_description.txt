@@ -1,0 +1,1 @@
+Let’s walk through a client/server example and test it in the shell. The server will be responsible for managing radio frequencies on behalf of its clients, the mobile phones connected to the network. The phone requests a frequency whenever a call needs to be connected, and releases it once the call has terminated.

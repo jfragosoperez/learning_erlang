@@ -1,0 +1,45 @@
+
+A ”control” process has to offer a user function go(N,M) that generates a lists L of M random integer numbers in the set {1,2,...,M}, sets up ring of N processes (so-called ”workers”) and sends a token to the first worker. Token possesion grants the worker possesor permission to eat. When worker k receives a token, it sends a message {self(), eat} to control and sends the token to next worker.
+
+When control receives a message {Pid, eat}, it withdraws the head H of the list L and appends to a result list the tuple {Pid, H}. When list L is empty, control sends a stop message to the ring that terminates the workers and prints the result list.
+
+There are two ways to solve this problem:
+	1.  control spawns all the workers in the ring.
+	2.  control spawns only the first worker in the ring. Every new worker in the ring, but the last one, spawns the next worker.
+		
+Pay attention to border cases, for instance N = 1, etc..., and be sure that all the processes end in a convenient way. Run several consecutive times your code in order to check everything is ok.
+
+	Execution examples:
+
+11> control:go(3,7).
+[5,4,1,2,2,1,1]
+<0.68.0> eats
+<0.69.0> eats
+<0.70.0> eats
+<0.68.0> eats
+<0.69.0> eats
+<0.70.0> eats
+<0.68.0> eats
+[{<0.68.0>,1},{<0.70.0>,1},{<0.69.0>,2},{<0.68.0>,2},{<0.70.0>,1},{<0.69.0>,4},{<0.68.0>,5}
+stop
+12> control:go(1,4).
+[4,2,1,1]
+<0.72.0> eats
+<0.72.0> eats
+<0.72.0> eats
+<0.72.0> eats
+[{<0.72.0>,1},{<0.72.0>,1},{<0.72.0>,2},{<0.72.0>,4}]
+stop
+13> control:go(4,6).
+[1,4,4,1,2,1]
+<0.74.0> eats
+<0.75.0> eats
+<0.76.0> eats
+￼
+<0.77.0> eats
+<0.74.0> eats
+<0.75.0> eats
+[{<0.75.0>,1},{<0.74.0>,2},{<0.77.0>,1},{<0.76.0>,4},{<0.75.0>,4},{<0.74.0>,1}]
+stop
+
+Have fun!
