@@ -1,0 +1,38 @@
+The goal of this exercise is to construct a parallel version par sum odds evens(L) of the sequential function seq odds evens(L). Given a list of integers, for instance L=[1,7,15,2,5,6,9]), the function seq odds evens(L) splits L into two sub-lists that contain the odd and even integers [1,7,15,5,9], [2,6] and returns the sums of elements in both lists,
+poe:seq_sum_odds_evens([1,7,15,2,5,6,9]).
+{37,8}
+To solve this exercise you have to complete the following module poe (parallel odds evens) following guided steps
+￼￼￼￼￼￼￼￼￼
+-module(poe).
+-compile([export_all]).
+sum(L) -> sum(L, 0).
+sum([], N)    -> N;
+sum([H|T], N) -> sum(T, H+N).
+odds_evens(L) -> ...
+seq_sum_odds_evens(L) -> ....
+par_sum_odds_evens(L) ->...
+ send_sum(P,L)-> ...
+rcv(P) ->
+    receive
+        {P, X} -> X
+    end.
+• Complete the function odds evens(L) splitting L into two sub-lists one containing the even numbers the other containing the odd numbers. The function returns both lists,
+     poe:odds_evens([1,7,15,2,5,6,9]).
+     {[1,7,15,5,9],[2,6]}
+Given an integer X in L, we check that X is even using (X rem 2) =:= 0. Please fill the blanks in the following code,
+     odds_evens(L) ->
+         Odds  = [X ||....],
+         Evens = ...,
+         {... , ....}.
+• Give (a sequential version) of seq sum odds evens(L).
+• Design a parallel version of seq sum odds evens(L) called par sum odds evens(L)
+based on the following schema:
+     par_sum_odds_evens(L) ->
+           ...
+           P1 = spawn(..., send_sum, [..., Odds]),
+           P2 = ...,
+           ...
+     send_sum(P,L)->....
+In this program only two processes P1 and P2 are spawned. Given L = [1,7,15,2,5,6,9]). Process P1 receives Odds = [1,7,15,5,9] computes the sum 37 and send back this sum. Note that P1 does not spawn any new process. Process P2 deals with [2,6].
+
+Comment. This exercise is for academic purposes. The suggested parallel implementation is far from being efficient.
