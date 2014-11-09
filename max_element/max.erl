@@ -9,8 +9,8 @@ my_max([]) -> throw("You cannot find the max of an empty list.");
 my_max([H|T]) -> my_max(T, H).
 
 my_max([H|T], Max) when H > Max -> my_max(T, H);
-my_max([_|T], Max) 				-> my_max(T, Max);
-my_max([],    Max)              -> Max.
+my_max([_|T], Max) -> my_max(T, Max);
+my_max([],    Max) -> Max.
 
 
 % PARALLEL MAX
