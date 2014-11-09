@@ -1,0 +1,21 @@
+The following program find the max of a list
+
+my_max([H|T]) -> my_max(T, H).
+my_max([H|T], Max) when H > Max -> my_max(T, H);
+my_max([_|T], Max)              -> my_max(T, Max);
+my_max([],    Max)              -> Max.
+
+Desing a pmax(L) such that.
+• When L has less than 10 elements it calls my max, 
+
+otherwise: 
+
+• It halves L into L1, L2.
+
+• It creates two processes P1 and P2. The list L1 goes to P1 and L2 goes to P2. Process P1 uses my max to find the max and send back this value. Process P2 do the same with L2.
+￼￼
+• Suppose that Max1 and Max2 store the values received from P1 and P2, use my max to compute and
+return the max.
+
+Describe shortly the (possible) advantages or disadvantages of pmax(L) in relation to my max.
+In fact which program is faster in your opinion my max or pmax?
